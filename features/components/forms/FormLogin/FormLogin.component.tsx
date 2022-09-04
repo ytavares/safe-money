@@ -2,40 +2,78 @@ import type { FunctionComponent } from 'react';
 import type { FormLoginProps } from './FormLogin.interface';
 
 import {
-  Button,
+  Box,
   Checkbox,
   FormControlLabel,
   FormGroup,
   Link,
   Stack,
-  TextField,
 } from '@mui/material';
+import { MuiTextField, Button } from './FormLogin.styles';
 
 export const FormLogin: FunctionComponent<FormLoginProps> = () => {
   return (
-    <Stack direction="column" maxWidth={300}>
-      <TextField
-        id="outlined-basic"
-        label="Login"
-        variant="outlined"
-        sx={{ marginBottom: '12px' }}
-      />
-      <TextField id="outlined-basic" label="Senha" variant="outlined" />
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
+    <Stack
+      direction="column"
+      maxWidth={400}
+      alignItems="center"
+      justifyContent="center"
+    >
+      <Stack
+        direction="column"
+        minWidth={300}
+        alignItems="center"
+        justifyContent="center"
+      >
+        <MuiTextField
+          id="outlined-basic"
+          placeholder="Login"
+          variant="outlined"
+          fullWidth
+          sx={{ marginBottom: '12px', borderRadius: '37px' }}
+          InputProps={{
+            sx: {
+              '& input': {
+                textAlign: 'center',
+              },
+            },
+          }}
+        />
+        <MuiTextField
+          id="outlined-basic"
+          placeholder="Senha"
+          variant="outlined"
+          type="password"
+          fullWidth
+          sx={{ marginBottom: '28px', borderRadius: '37px' }}
+          InputProps={{
+            sx: {
+              '& input': {
+                textAlign: 'center',
+              },
+            },
+          }}
+        />
+      </Stack>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        minWidth={350}
+      >
         <FormGroup>
           <FormControlLabel
             control={<Checkbox defaultChecked />}
             label="Lembrar-me"
           />
         </FormGroup>
-        <Link href="#">Esqueci minha senha </Link>
+        <Link href="#" underline="none">
+          Esqueci minha senha{' '}
+        </Link>
       </Stack>
-      <Button
-        variant="contained"
-        sx={{ color: '#FFFFFF', padding: '5px 30px', borderRadius: '37px' }}
-      >
-        Acessar
-      </Button>
+      <Stack justifyContent="center" alignItems="center">
+        <Button variant="contained">Acessar</Button>
+      </Stack>
     </Stack>
   );
 };
