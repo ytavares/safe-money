@@ -1,52 +1,71 @@
 import { Box, Container, Link, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
-import logo from '../public/images/Logo.png';
-import { Button } from '../features/components/forms/FormLogin/FormLogin.styles';
+import logo from '../public/images/logoFilled.png';
+import { ButtonIcon } from '../features/components/forms/FormLogin/FormLogin.styles';
+import GoogleIcon from '@mui/icons-material/Google';
+import { signIn, useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { PageLoading } from '../common/components/loading';
 
-export default function Home() {
+export default function Index() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+
+  const isLoading = status === 'loading';
+
+  if (isLoading) {
+    return <PageLoading />;
+  }
+
+  if (session) {
+    router.push('/home');
+  }
+
+  const handleOAuthSignIn = (provider: string) => () => signIn(provider);
   return (
     <Container>
       <Stack alignItems="center" justifyContent="center" height="100vh">
-        <Box sx={{ marginBottom: '-75px' }}>
-          <Image src={logo} alt="logo" />
-        </Box>
+        <Link href="/">
+          <Box>
+            <Image src={logo} alt="logo" />
+          </Box>
+        </Link>
         <Typography
           sx={{
             fontWeight: 700,
-            fontSize: '16px',
-            lineHeight: '21px',
+            fontSize: '12px',
+            lineHeight: '16px',
+            color: '#000000',
+            maxWidth: '148px',
             textAlign: 'center',
-            maxWidth: '180px',
-            color: '#636161',
-            marginBottom: '15px',
+            marginBottom: '75px',
           }}
         >
-          Você sabe, tempo é dinheiro
+          Fique a vontade para se autenticar como quiser
         </Typography>
         <Typography
           sx={{
-            fontWeight: 500,
-            fontSize: '14px',
-            lineHeight: '18px',
+            fontWeight: 400,
+            fontSize: '12px',
+            lineHeight: '16px',
+            color: '#000000',
             textAlign: 'center',
-            color: '#9F9D9D',
-            maxWidth: '374px',
-            marginBottom: '170px',
+            marginBottom: '19px',
           }}
         >
-          Organize sua grana em poucos minutos e não perca tempo. Tenha tudo sob
-          controle no seu celular ou no seu computador!
+          Conecte-se da maneira que preferir
         </Typography>
-        <Button
-          variant="contained"
-          sx={{ marginBottom: '8px' }}
-          href="/newAccount"
-        >
-          Criar uma conta
-        </Button>
-        <Link href="/login" underline="none">
-          Fazer login
-        </Link>
+        <Stack direction="column" maxWidth={400}>
+          <ButtonIcon
+            variant="contained"
+            startIcon={<GoogleIcon />}
+            fullWidth
+            onClick={handleOAuthSignIn('google')}
+          >
+            Registre-se com o Google
+          </ButtonIcon>
+        </Stack>
       </Stack>
     </Container>
   );
