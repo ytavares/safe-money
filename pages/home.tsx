@@ -1,11 +1,17 @@
 import type { FunctionComponent } from 'react';
 
-import { Avatar, Button, Stack, Typography } from '@mui/material';
+import { Avatar, Button, Container, Stack, Typography } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { PageLoading } from '../common/components/loading';
+import { HomeOverview } from '../common/components/HomeOverview';
+import { CardAccount } from '../common/components/cards/CardAccounts';
+import { cardAccountMock } from '../common/components/cards/CardAccounts/CardAccount.mock';
+import { NavigationMain } from '../common/components/navigation/NavigationMain/NavigationMain.component';
+import { CardCredit } from '../common/components/cards';
+import { cardCreditMock } from '../common/components/cards/CardCredit/CardCredit.mock';
 
 const Home: FunctionComponent = () => {
   const { data: session, status } = useSession();
@@ -27,14 +33,16 @@ const Home: FunctionComponent = () => {
 
   return (
     <>
-      <Typography variant="h1">Pagina inicial</Typography>
-      <Stack direction="column">
-        <Avatar alt="usuario" src={avatar} />
-        <Typography variant="h5">Bem vindo {session?.user?.name} !</Typography>
-      </Stack>
-      <Button variant="contained" onClick={() => signOut()}>
-        Deslogar
-      </Button>
+      <HomeOverview
+        srcAvatar={avatar}
+        userName={session?.user?.name}
+        onDisconnect={() => signOut()}
+      />
+      <Container maxWidth="lg">
+        <CardAccount {...cardAccountMock} />
+        <CardCredit {...cardCreditMock} />
+        <NavigationMain />
+      </Container>
     </>
   );
 };

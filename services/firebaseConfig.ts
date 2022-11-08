@@ -2,7 +2,7 @@ import { initializeApp, getApp, getApps } from "firebase/app";
 import {getFirestore} from 'firebase/firestore';
 import {getStorage} from 'firebase/storage'
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
   appId: process.env.FIREBASE_APP_ID,
   authDomain: process.env.FIREBASE_AUTH_DOMAIN,
