@@ -1,7 +1,9 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useMemo } from 'react';
 import type { CardAccountProps } from './CardAccount.interface';
 
-import { Box, Divider, Stack } from '@mui/material';
+import { chain } from 'lodash';
+
+import { Divider, Stack } from '@mui/material';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import clsx from 'clsx';
 import {
@@ -15,13 +17,37 @@ import {
   AccountIcon,
   AccountName,
   AccountBalance,
+  PlaceholderPhrase,
 } from './CardAccount.styles';
+import Image from 'next/image';
+import ItauLogo from '../../../../public/images/itau-logo.jpg';
 
 export const CardAccount: FunctionComponent<CardAccountProps> = ({
-  generalBalance,
-  visible,
   accounts,
 }) => {
+  const totalValue = useMemo<number>(() => {
+    return (
+      accounts?.reduce((acc, cur) => {
+        return cur.accountType === 'Receita'
+          ? acc + (cur?.amount || 0)
+          : acc - (cur?.amount || 0);
+      }, 0) || 0
+    );
+  }, [accounts]);
+  const bankAccounts = chain(accounts)
+    .groupBy('accountBank')
+    .map((value, key) => ({
+      accountBank: key,
+      accounts: value,
+      totalBankValue:
+        value?.reduce((acc, cur) => {
+          return cur.accountType === 'Receita'
+            ? acc + (cur?.amount || 0)
+            : acc - (cur?.amount || 0);
+        }, 0) || 0,
+    }))
+    .value();
+
   return (
     <Card>
       <Stack direction="column">
@@ -31,51 +57,47 @@ export const CardAccount: FunctionComponent<CardAccountProps> = ({
           alignItems="flex-start"
         >
           <BalanceTitle>Saldo geral</BalanceTitle>
-          <BalanceValue>R$: {generalBalance}</BalanceValue>
+          <BalanceValue>R$: {totalValue}</BalanceValue>
         </BalanceBox>
 
         <Divider />
 
         <AccountsTitle>Minhas contas</AccountsTitle>
 
-        <Stack>
-          {accounts?.map((account) => (
-            <AccountsItem
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <Stack direction="row" alignItems="center">
-                {account.src ? (
-                  <Box
-                    sx={{
-                      borderRadius: '50%',
-                      width: '24px',
-                      height: '24px',
-                      '& img': { margin: 0 },
-                    }}
-                  >
-                    <img src={account.src} alt="iconAccount" />
-                  </Box>
-                ) : (
+        {bankAccounts && (
+          <Stack>
+            {bankAccounts?.map((account) => (
+              <AccountsItem
+                direction="row"
+                alignItems="center"
+                justifyContent="space-between"
+                key={account.accountBank}
+              >
+                <Stack direction="row" alignItems="center">
                   <AccountIcon>
                     <AccountBalanceWalletIcon />
                   </AccountIcon>
-                )}
-                <AccountName>{account.name}</AccountName>
-              </Stack>
-              <AccountBalance
-                className={clsx(
-                  account.generalBalance >= 0 ? 'positive' : 'negative'
-                )}
-              >
-                R$: {account.generalBalance}
-              </AccountBalance>
-            </AccountsItem>
-          ))}
-        </Stack>
+                  <AccountName>{account.accountBank}</AccountName>
+                </Stack>
+                <AccountBalance
+                  className={clsx(
+                    account.totalBankValue > 0 ? 'positive' : 'negative'
+                  )}
+                >
+                  R$: {account.totalBankValue}
+                </AccountBalance>
+              </AccountsItem>
+            ))}
+          </Stack>
+        )}
 
-        <Button>Gerenciar contas</Button>
+        {bankAccounts.length === 0 && (
+          <PlaceholderPhrase textAlign="center">
+            Você ainda não tem nenhuma conta cadastrada. 😊​😊​
+          </PlaceholderPhrase>
+        )}
+
+        <Button href="/lista-contas">Gerenciar contas</Button>
       </Stack>
     </Card>
   );

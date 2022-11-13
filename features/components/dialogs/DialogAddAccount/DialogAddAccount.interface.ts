@@ -5,6 +5,11 @@ export interface DialogAddAccountProps {
   open: boolean;
 
   /**
+   * Determina o usuario
+   */
+  userId?: string | null;
+
+  /**
    * Evento emitido ao fechar a caixa de dialogo
    */
   onClose?: () => void;

@@ -21,15 +21,20 @@
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.9.1",
     "@mui/styled-engine-sc": "^5.8.0",
+    "@mui/x-date-pickers": "^5.0.7",
     "@next-auth/firebase-adapter": "1.0.1",
     "@reduxjs/toolkit": "^1.8.3",
+    "date-fns": "^2.29.3",
+    "dayjs": "^1.11.6",
     "firebase": "^9.12.1",
     "next": "12.2.2",
     "next-auth": "^4.14.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.0.3",
-    "styled-components": "^5.3.5"
+    "react-number-format": "^5.1.1",
+    "styled-components": "^5.3.5",
+    "use-count-up": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.18.9",

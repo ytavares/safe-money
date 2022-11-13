@@ -33,6 +33,14 @@ export const BalanceTitle = styled(Typography)(() => ({
   marginBottom: '5px'
 }))
 
+export const PlaceholderPhrase = styled(Typography)(() => ({
+  fontWeight: 500,
+  fontSize: '18px',
+  lineHeight: '22px',
+  color: '#B9B7B7',
+  marginBottom: '16px'
+}))
+
 export const BalanceValue = styled(Typography)(() => ({
   fontWeight: 700,
   fontSize: '14px',

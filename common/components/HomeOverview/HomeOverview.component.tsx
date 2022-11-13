@@ -2,7 +2,7 @@ import type { FunctionComponent } from 'react';
 import type { HomeOverviewProps } from './HomeOverview.interface';
 
 import { Container, IconButton, Stack } from '@mui/material';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import {
   BackgroundStack,
   Avatar,
@@ -32,7 +32,11 @@ export const HomeOverview: FunctionComponent<HomeOverviewProps> = ({
             alignItems="center"
             justifyContent="space-between"
           >
-            <Avatar alt="Avatar Profile" src={srcAvatar} />
+            <Avatar
+              alt="Avatar Profile"
+              src={srcAvatar}
+              imgProps={{ referrerPolicy: 'no-referrer' }}
+            />
             <Stack direction="column">
               <WellcomeText>Bem vindo,</WellcomeText>
               <UserText>{userName}</UserText>
@@ -43,7 +47,7 @@ export const HomeOverview: FunctionComponent<HomeOverviewProps> = ({
             sx={{ color: '#FFFFFF', height: '14px', width: '14px' }}
             onClick={onDisconnect}
           >
-            <NotificationsIcon />
+            <ExitToAppIcon />
           </IconButton>
         </Stack>
       </Container>

@@ -7,7 +7,7 @@ export interface HomeOverviewProps {
   /**
    * Determina a foto do usuário
    */
-  srcAvatar?: string;
+  srcAvatar?: string ;
 
   /**
    * Determina botão para deslogar

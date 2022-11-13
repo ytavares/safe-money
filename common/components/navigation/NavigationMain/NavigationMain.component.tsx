@@ -12,7 +12,9 @@ import AddIcon from '@mui/icons-material/Add';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import { DialogAddAccount } from '../../../../features/components/dialogs';
 
-export const NavigationMain: FunctionComponent<NavigationMainProps> = () => {
+export const NavigationMain: FunctionComponent<NavigationMainProps> = ({
+  userId,
+}) => {
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
 
@@ -60,7 +62,11 @@ export const NavigationMain: FunctionComponent<NavigationMainProps> = () => {
           <SignalCellularAltIcon />
         </SimpleButton>
       </MainBox>
-      <DialogAddAccount open={open} onClose={handleCloseDialog} />
+      <DialogAddAccount
+        open={open}
+        onClose={handleCloseDialog}
+        userId={userId}
+      />
     </ContainerBox>
   );
 };

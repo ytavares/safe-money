@@ -4,7 +4,6 @@ import logo from '../public/images/logoFilled.png';
 import { ButtonIcon } from '../features/components/forms/FormLogin/FormLogin.styles';
 import GoogleIcon from '@mui/icons-material/Google';
 import { signIn, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { PageLoading } from '../common/components/loading';
 

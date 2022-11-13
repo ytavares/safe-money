@@ -19,7 +19,7 @@ export interface Accounts {
   /**
    * Determina o nome da conta
    */
-  name?: string;
+  accountBank?: string;
 
   /**
    * Src da imagem do banco da conta
@@ -35,4 +35,29 @@ export interface Accounts {
    * Determina o link de redirecionamento dos detalhes de conta
    */
   link?: string;
+  
+  /**
+   * Determina o id da lista
+   */
+  uid?: string;
+
+  /**
+   * Nome da conta
+   */
+  accountName?: string;
+
+  /**
+  * Categoria da conta
+  */
+  category?: string;
+
+  /**
+  * Valor da conta
+  */
+  amount?: number;
+
+  /**
+   * Tipo de conta
+   */
+  accountType?: string;
 }
