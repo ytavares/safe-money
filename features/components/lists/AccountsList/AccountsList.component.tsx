@@ -30,7 +30,7 @@ export const AccountsList: FunctionComponent<AccountsListProps> = ({
   const { value } = useCountUp({
     isCounting: true,
     end: totalValue,
-    duration: 4,
+    duration: 2,
   });
 
   return (

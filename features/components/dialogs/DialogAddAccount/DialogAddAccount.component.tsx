@@ -85,6 +85,7 @@ export const DialogAddAccount: FunctionComponent<DialogAddAccountProps> = ({
       ? setDisabledCategory(true)
       : setDisabledCategory(false);
   }, [accountType, setDisabledCategory]);
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth={'lg'}>
       <DialogTitle>

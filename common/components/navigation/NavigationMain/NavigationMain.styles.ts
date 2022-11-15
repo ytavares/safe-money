@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Stack as MuiStack, IconButton, Container } from '@mui/material';
+import { Stack as MuiStack, IconButton, Container, Button } from '@mui/material';
 
 export const MainBox = styled(MuiStack)(({ theme }) => ({
   background: '#E7E7E7',
@@ -21,7 +21,7 @@ export const ContainerBox = styled(Container)(({ theme }) => ({
   }
 }));
 
-export const SimpleButton = styled(IconButton)(({ theme }) => ({
+export const SimpleButton = styled(Button)(({ theme }) => ({
   color: '#575656',
 }));
 

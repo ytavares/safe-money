@@ -18,20 +18,12 @@ export const NavigationMain: FunctionComponent<NavigationMainProps> = ({
   const [open, setOpen] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleRedirectHome = useCallback(() => {
-    router.push('/home');
-  }, []);
-
   const handleOpenDialog = useCallback(() => {
     setOpen(true);
   }, [setOpen]);
   const handleCloseDialog = useCallback(() => {
     setOpen(false);
   }, [setOpen]);
-
-  const handleRedirectGraph = useCallback(() => {
-    router.push('/Graph');
-  }, []);
 
   return (
     <ContainerBox maxWidth="lg">
@@ -40,11 +32,7 @@ export const NavigationMain: FunctionComponent<NavigationMainProps> = ({
         justifyContent="space-around"
         alignItems="center"
       >
-        <SimpleButton
-          aria-label="home"
-          color="primary"
-          onClick={handleRedirectHome}
-        >
+        <SimpleButton aria-label="home" color="primary" href="/home">
           <HomeIcon />
         </SimpleButton>
         <MainButton
@@ -54,11 +42,7 @@ export const NavigationMain: FunctionComponent<NavigationMainProps> = ({
         >
           <AddIcon />
         </MainButton>
-        <SimpleButton
-          aria-label="graph"
-          color="primary"
-          onClick={handleRedirectGraph}
-        >
+        <SimpleButton color="primary" href="/graficos">
           <SignalCellularAltIcon />
         </SimpleButton>
       </MainBox>
