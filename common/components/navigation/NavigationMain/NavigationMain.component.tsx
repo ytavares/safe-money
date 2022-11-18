@@ -6,7 +6,6 @@ import {
   MainButton,
   SimpleButton,
 } from './NavigationMain.styles';
-import { useRouter } from 'next/router';
 import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
@@ -16,7 +15,6 @@ export const NavigationMain: FunctionComponent<NavigationMainProps> = ({
   userId,
 }) => {
   const [open, setOpen] = useState<boolean>(false);
-  const router = useRouter();
 
   const handleOpenDialog = useCallback(() => {
     setOpen(true);
