@@ -3,20 +3,27 @@ import type { ListItemProps } from './ListItem.interface';
 
 import clsx from 'clsx';
 
-import { Stack } from '@mui/material';
+import { IconButton, Stack } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   AccountCategoryBox,
   AccountNameBox,
   AccountValueBox,
   ListItemStack,
 } from './ListItem.styles';
+import { deleteDoc, doc } from '@firebase/firestore';
+import { db } from '../../../../../../services/firebaseConfig2';
 
 export const ListItem: FunctionComponent<ListItemProps> = ({
   accountName,
-  category,
   amount,
   accountType,
+  id,
 }) => {
+  const handleDelete = (id: string) => async () => {
+    await deleteDoc(doc(db, 'wallets', id));
+  };
+
   return (
     <ListItemStack
       direction="row"
@@ -25,13 +32,15 @@ export const ListItem: FunctionComponent<ListItemProps> = ({
     >
       <Stack justifyContent="flex-start" alignItems="flex-start">
         <AccountNameBox>{accountName}</AccountNameBox>
-        <AccountCategoryBox>{category}</AccountCategoryBox>
+        <AccountValueBox
+          className={clsx(accountType === 'Receita' ? 'positive' : 'negative')}
+        >
+          R$ {amount}
+        </AccountValueBox>
       </Stack>
-      <AccountValueBox
-        className={clsx(accountType === 'Receita' ? 'positive' : 'negative')}
-      >
-        R$ {amount}
-      </AccountValueBox>
+      <IconButton aria-label="delete" onClick={handleDelete(id)}>
+        <DeleteIcon />
+      </IconButton>
     </ListItemStack>
   );
 };

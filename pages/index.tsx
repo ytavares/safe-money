@@ -53,7 +53,7 @@ export default function Index() {
             marginBottom: '19px',
           }}
         >
-          Conecte-se da maneira que preferir
+          Conecte-se da forma mais fácil com google
         </Typography>
         <Stack direction="column" maxWidth={400}>
           <ButtonIcon
@@ -62,7 +62,7 @@ export default function Index() {
             fullWidth
             onClick={handleOAuthSignIn('google')}
           >
-            Registre-se com o Google
+            Autentique-se com o Google
           </ButtonIcon>
         </Stack>
       </Stack>

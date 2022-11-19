@@ -74,6 +74,18 @@ export const AccountIcon = styled(Box) (() => ({
   }
 }))
 
+export const BankIcon = styled(Box) (() => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  '& img': {
+    borderRadius: '50%',
+    overflow: 'hidden',
+    width: '100%',
+    height: '100%'
+  }
+}))
+
 export const AccountName = styled(Typography)(() => ({
   fontWeight: 400,
   fontSize: '14px',

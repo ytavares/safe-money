@@ -17,3 +17,12 @@ export const PlaceholderPhrase = styled(Typography)(() => ({
   marginBottom: '16px',
   fontStyle: 'italic'
 }))
+export const DespesaText = styled(Typography)(() => ({
+  color: 'red',
+}))
+export const ReceitaText = styled(Typography)(() => ({
+  color: 'blue',
+}))
+export const DisponivelText = styled(Typography)(() => ({
+  color: '#12C970',
+}))

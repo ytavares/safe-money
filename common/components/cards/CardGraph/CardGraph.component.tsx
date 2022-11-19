@@ -6,7 +6,13 @@ import { useState, useEffect } from 'react';
 import { collection, query, where, onSnapshot } from '@firebase/firestore';
 import { Chart } from 'react-google-charts';
 import { chain } from 'lodash';
-import { Card, PlaceholderPhrase } from './CardGraph.styles';
+import {
+  Card,
+  DespesaText,
+  DisponivelText,
+  PlaceholderPhrase,
+  ReceitaText,
+} from './CardGraph.styles';
 import { db } from '../../../../services/firebaseConfig2';
 
 export const CardGraph: FunctionComponent<CardGraphProps> = () => {
@@ -77,6 +83,7 @@ export const CardGraph: FunctionComponent<CardGraphProps> = () => {
 
   const options = {
     title: 'Balanço geral',
+    colors: ['red', '#12C970'],
   };
 
   return (
@@ -104,11 +111,11 @@ export const CardGraph: FunctionComponent<CardGraphProps> = () => {
             indicamos que economize 20% de suas receitas e direcione no máximo
             80% para despesas . 😊​😊​
           </PlaceholderPhrase>
-          <Typography color="green">Receita: R${receitas}</Typography>
-          <Typography color="salmon">Despesas: R${totDespesas}</Typography>
-          <Typography color="blueviolet">
+          <ReceitaText>Receita: R${receitas}</ReceitaText>
+          <DespesaText>Despesas: R${totDespesas}</DespesaText>
+          <DisponivelText>
             Disponível para gastar: R${totalGasto}
-          </Typography>
+          </DisponivelText>
           {totalGasto < 0 && (
             <PlaceholderPhrase textAlign="center" className="red">
               Você não conseguiu guardar os 20% desse mês. 😥😥 Não desista, no

@@ -11,7 +11,7 @@ export interface List {
   /**
    * Nome da conta
    */
-  accountName?: string;
+  accountName: string;
 
   /**
   * Categoria da conta
@@ -27,4 +27,9 @@ export interface List {
    * Tipo de conta
    */
   accountType?: string;
+
+  /**
+   * ID da tabela
+   */
+  id: string;
 }

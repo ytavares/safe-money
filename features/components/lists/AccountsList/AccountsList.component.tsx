@@ -40,13 +40,14 @@ export const AccountsList: FunctionComponent<AccountsListProps> = ({
           Você ainda não tem nenhuma conta cadastrada. 😊​😊​
         </PlaceholderPhrase>
       )}
-      {list?.map((item) => (
+      {list?.map((item, index) => (
         <ListItem
           category={item.category}
           accountName={item.accountName}
           amount={item.amount}
           accountType={item.accountType}
           key={item.accountName}
+          id={item.id}
         />
       ))}
       {list?.length !== 0 && (

@@ -29,7 +29,7 @@ const ContasListas: FunctionComponent = () => {
   const walletsMain = onSnapshot(q, (querySnapshot) => {
     const walletsDB = new Array().fill(null);
     querySnapshot.forEach((doc) => {
-      walletsDB.push(doc.data());
+      walletsDB.push({ ...doc.data(), id: doc.id });
     });
     setAccounts(walletsDB);
   });
